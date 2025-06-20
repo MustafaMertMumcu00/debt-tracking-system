@@ -1,0 +1,354 @@
+{
+  "users": [
+    {
+      "id": "user_1",
+      "name": "Örnek Kullanıcı",
+      "email": "user@example.com"
+    },
+    {
+      "id": "user_2",
+      "name": "Mert",
+      "email": "mert@gmail.com"
+    },
+    {
+      "id": "user_3",
+      "name": "test",
+      "email": "test@gmail.com"
+    }
+  ],
+  "customers": {
+    "user_1": [
+      {
+        "id": "cust_101",
+        "accountCode": "C-00123",
+        "name": "Innovate Corp",
+        "phone": "555-0101",
+        "balance": 15250.75,
+        "lastInvoiceDate": "2024-09-15",
+        "lastPaymentDate": "2024-08-20",
+        "status": "pending"
+      },
+      {
+        "id": "cust_102",
+        "accountCode": "C-00124",
+        "name": "Apex Solutions",
+        "phone": "555-0102",
+        "balance": 7500.00,
+        "lastInvoiceDate": "2024-09-01",
+        "lastPaymentDate": "2024-08-15",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_103",
+        "accountCode": "C-00125",
+        "name": "Quantum Dynamics",
+        "phone": "555-0103",
+        "balance": 32050.50,
+        "lastInvoiceDate": "2024-08-25",
+        "lastPaymentDate": "2024-07-30",
+        "status": "rejected"
+      },
+      {
+        "id": "cust_104",
+        "accountCode": "C-00126",
+        "name": "Pinnacle Group",
+        "phone": "555-0104",
+        "balance": 4800.00,
+        "lastInvoiceDate": "2024-10-02",
+        "lastPaymentDate": "2024-09-11",
+        "status": "pending"
+      },
+      {
+        "id": "cust_105",
+        "accountCode": "C-00127",
+        "name": "Starlight Ventures",
+        "phone": "555-0105",
+        "balance": 99500.20,
+        "lastInvoiceDate": "2024-07-20",
+        "lastPaymentDate": "2024-06-18",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_106",
+        "accountCode": "C-00128",
+        "name": "Blue Ocean Co.",
+        "phone": "555-0106",
+        "balance": 12300.00,
+        "lastInvoiceDate": "2024-09-30",
+        "lastPaymentDate": "2024-09-05",
+        "status": "pending"
+      },
+      {
+        "id": "cust_107",
+        "accountCode": "C-00129",
+        "name": "Silverline Exports",
+        "phone": "555-0107",
+        "balance": 7600.80,
+        "lastInvoiceDate": "2024-06-15",
+        "lastPaymentDate": "2024-05-20",
+        "status": "rejected"
+      },
+      {
+        "id": "cust_108",
+        "accountCode": "C-00130",
+        "name": "Horizon Imports",
+        "phone": "555-0108",
+        "balance": 21500.00,
+        "lastInvoiceDate": "2024-10-05",
+        "lastPaymentDate": "2024-09-12",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_109",
+        "accountCode": "C-00131",
+        "name": "Fusion Enterprises",
+        "phone": "555-0109",
+        "balance": 5432.50,
+        "lastInvoiceDate": "2024-08-01",
+        "lastPaymentDate": "2024-07-10",
+        "status": "pending"
+      },
+      {
+        "id": "cust_110",
+        "accountCode": "C-00132",
+        "name": "Vertex Logistics",
+        "phone": "555-0110",
+        "balance": 18200.00,
+        "lastInvoiceDate": "2024-09-21",
+        "lastPaymentDate": "2024-08-28",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_111",
+        "accountCode": "C-00133",
+        "name": "Momentum Systems",
+        "phone": "555-0111",
+        "balance": 6500.00,
+        "lastInvoiceDate": "2024-05-25",
+        "lastPaymentDate": "2024-04-30",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_112",
+        "accountCode": "C-00134",
+        "name": "Catalyst Tech",
+        "phone": "555-0112",
+        "balance": 33000.00,
+        "lastInvoiceDate": "2024-10-10",
+        "lastPaymentDate": "2024-09-15",
+        "status": "pending"
+      },
+      {
+        "id": "cust_113",
+        "accountCode": "C-00135",
+        "name": "Summit Trading",
+        "phone": "555-0113",
+        "balance": 11250.75,
+        "lastInvoiceDate": "2024-08-18",
+        "lastPaymentDate": "2024-07-22",
+        "status": "rejected"
+      },
+      {
+        "id": "cust_114",
+        "accountCode": "C-00136",
+        "name": "Omega Industries",
+        "phone": "555-0114",
+        "balance": 140500.00,
+        "lastInvoiceDate": "2024-09-14",
+        "lastPaymentDate": "2024-08-19",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_115",
+        "accountCode": "C-00137",
+        "name": "Nexus Innovations",
+        "phone": "555-0115",
+        "balance": 29800.00,
+        "lastInvoiceDate": "2024-10-01",
+        "lastPaymentDate": "2024-09-03",
+        "status": "pending"
+      },
+      {
+        "id": "cust_116",
+        "accountCode": "C-00138",
+        "name": "Dynamic Solutions Ltd.",
+        "phone": "555-0116",
+        "balance": 8800.25,
+        "lastInvoiceDate": "2024-07-07",
+        "lastPaymentDate": "2024-06-11",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_117",
+        "accountCode": "C-00139",
+        "name": "Legacy Holdings",
+        "phone": "555-0117",
+        "balance": 75000.00,
+        "lastInvoiceDate": "2024-09-08",
+        "lastPaymentDate": "2024-08-13",
+        "status": "pending"
+      },
+      {
+        "id": "cust_118",
+        "accountCode": "C-00140",
+        "name": "Prime Goods Co.",
+        "phone": "555-0118",
+        "balance": 13450.50,
+        "lastInvoiceDate": "2024-10-03",
+        "lastPaymentDate": "2024-09-09",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_119",
+        "accountCode": "C-00141",
+        "name": "Core Mechanics",
+        "phone": "555-0119",
+        "balance": 4100.00,
+        "lastInvoiceDate": "2024-04-12",
+        "lastPaymentDate": "2024-03-15",
+        "status": "rejected"
+      },
+      {
+        "id": "cust_120",
+        "accountCode": "C-00142",
+        "name": "Titanium Partners",
+        "phone": "555-0120",
+        "balance": 62300.00,
+        "lastInvoiceDate": "2024-09-25",
+        "lastPaymentDate": "2024-08-30",
+        "status": "pending"
+      },
+      {
+        "id": "cust_121",
+        "accountCode": "C-00143",
+        "name": "Zenith Consulting",
+        "phone": "555-0121",
+        "balance": 19800.00,
+        "lastInvoiceDate": "2024-08-29",
+        "lastPaymentDate": "2024-08-02",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_122",
+        "accountCode": "C-00144",
+        "name": "Alpha Builders",
+        "phone": "555-0122",
+        "balance": 89000.60,
+        "lastInvoiceDate": "2024-10-06",
+        "lastPaymentDate": "2024-09-14",
+        "status": "pending"
+      },
+      {
+        "id": "cust_123",
+        "accountCode": "C-00145",
+        "name": "Brighton Foods",
+        "phone": "555-0123",
+        "balance": 23400.00,
+        "lastInvoiceDate": "2024-07-28",
+        "lastPaymentDate": "2024-07-04",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_124",
+        "accountCode": "C-00146",
+        "name": "Crystal Clear Services",
+        "phone": "555-0124",
+        "balance": 5200.00,
+        "lastInvoiceDate": "2024-09-19",
+        "lastPaymentDate": "2024-08-23",
+        "status": "pending"
+      },
+      {
+        "id": "cust_125",
+        "accountCode": "C-00147",
+        "name": "Delta Manufacturing",
+        "phone": "555-0125",
+        "balance": 51000.00,
+        "lastInvoiceDate": "2024-06-20",
+        "lastPaymentDate": "2024-05-22",
+        "status": "rejected"
+      },
+      {
+        "id": "cust_126",
+        "accountCode": "C-00148",
+        "name": "Evergreen Gardens",
+        "phone": "555-0126",
+        "balance": 14700.50,
+        "lastInvoiceDate": "2024-08-11",
+        "lastPaymentDate": "2024-07-15",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_127",
+        "accountCode": "C-00149",
+        "name": "First Choice Resources",
+        "phone": "555-0127",
+        "balance": 31500.00,
+        "lastInvoiceDate": "2024-10-04",
+        "lastPaymentDate": "2024-09-06",
+        "status": "pending"
+      },
+      {
+        "id": "cust_128",
+        "accountCode": "C-00150",
+        "name": "Golden Gate Properties",
+        "phone": "555-0128",
+        "balance": 250000.00,
+        "lastInvoiceDate": "2024-09-28",
+        "lastPaymentDate": "2024-08-29",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_129",
+        "accountCode": "C-00151",
+        "name": "Highland Freight",
+        "phone": "555-0129",
+        "balance": 18900.00,
+        "lastInvoiceDate": "2024-09-02",
+        "lastPaymentDate": "2024-08-05",
+        "status": "confirmed"
+      },
+      {
+        "id": "cust_130",
+        "accountCode": "C-00152",
+        "name": "Infinity Graphics",
+        "phone": "555-0130",
+        "balance": 9200.75,
+        "lastInvoiceDate": "2024-08-08",
+        "lastPaymentDate": "2024-07-12",
+        "status": "pending"
+      },
+      {
+        "id": "cust_131",
+        "accountCode": "C-00153",
+        "name": "Jade Palace Imports",
+        "phone": "555-0131",
+        "balance": 4350.00,
+        "lastInvoiceDate": "2024-05-30",
+        "lastPaymentDate": "2024-05-01",
+        "status": "rejected"
+      },
+      {
+        "id": "cust_132",
+        "accountCode": "C-00154",
+        "name": "Keystone Tech",
+        "phone": "555-0132",
+        "balance": 115000.00,
+        "lastInvoiceDate": "2024-10-07",
+        "lastPaymentDate": "2024-09-18",
+        "status": "pending"
+      }
+    ],
+    "user_2": [{
+        "id": "cust_201",
+        "accountCode": "C-201",
+        "name": "Keystone Tech",
+        "phone": "555-0132",
+        "balance": 115000.00,
+        "lastInvoiceDate": "2024-10-07",
+        "lastPaymentDate": "2024-09-18",
+        "status": "pending"
+      }],
+    "user_3": []
+  }
+}
