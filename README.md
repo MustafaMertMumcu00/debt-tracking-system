@@ -45,8 +45,18 @@ cd debt-tracking-system
     ```
 
 2.  Create and activate a virtual environment:
-    *   On Windows: `python -m venv venv` then `.\venv\Scripts\activate`
-    *   On macOS/Linux: `python3 -m venv venv` then `source venv/bin/activate`
+    *   **On macOS/Linux:**
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
+    *   **On Windows:**
+        ```bash
+        python -m venv venv
+        .\venv\Scripts\activate
+        ```
+        > **Note for Windows PowerShell users:** If you get an error about scripts being disabled, run the following command once to allow scripts for your user, then try the `activate` command again:
+        > `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
 3.  Install the required Python packages from the `requirements.txt` file:
     ```bash
