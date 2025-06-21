@@ -55,7 +55,7 @@ cd debt-tracking-system
     *   **On Windows:**
         ```bash
         python -m venv venv
-        .\venv\Scripts\activate
+        .\venv\Scripts\Activate.ps1
         ```
         > **Note for Windows PowerShell users:** If you get an error about scripts being disabled, run the following command once to allow scripts for your user, then try the `activate` command again:
         > `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
