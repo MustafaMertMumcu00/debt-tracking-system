@@ -4,9 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-
 from .models import Customer
-from .serializers import CustomerSerializer, UserSerializer
+from .serializers import CustomerSerializer, UserSerializer, CustomAuthTokenSerializer
 
 # POST /api/register
 class RegisterView(generics.CreateAPIView):
@@ -15,25 +14,19 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
 
     def create(self, request, *args, **kwargs):
-        # E-postanın zaten kullanımda olup olmadığını kontrol et
-        email = request.data.get('email', '').lower()
-        if User.objects.filter(email__iexact=email).exists():
-            return Response(
-                {"success": False, "message": "This email address is already in use."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-            
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
+
         return Response(
-            {"success": True, "message": "User registered successfully!"},
+            {"success": True, "message": "Kullanıcı başarıyla kaydedildi!"},
             status=status.HTTP_201_CREATED
         )
 
-
 # POST /api/login
 class CustomLoginView(ObtainAuthToken):
+    serializer_class = CustomAuthTokenSerializer
+
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -70,7 +63,7 @@ class SendConfirmationView(APIView):
 
         if not customer_ids:
             return Response(
-                {"success": False, "message": "Invalid data provided."},
+                {"success": False, "message": "Geçersiz veri sağlandı"},
                 status=status.HTTP_400_BAD_REQUEST
             )
         
@@ -82,6 +75,6 @@ class SendConfirmationView(APIView):
         
         return Response({
             "success": True,
-            "message": f"Requests sent to {len(customer_ids)} selected customers."
+            "message": f"{len(customer_ids)} adet seçili müşteriye talep gönderildi."
         })
     

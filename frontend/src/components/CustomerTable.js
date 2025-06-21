@@ -7,7 +7,7 @@ function CustomerTable({ customers, selectedIds, isLoading, onSelectCustomer }) 
   const statusConfig = {
     confirmed: { text: 'Onaylandı', className: 'bg-green-600 text-white' },
     rejected: { text: 'Reddedildi', className: 'bg-red-600 text-white' },
-    pending: { text: 'Yanıt Yok', className: 'bg-orange-500 text-white' }
+    pending: { text: 'Beklemede', className: 'bg-orange-500 text-white' }
   };
 
   return (
@@ -17,7 +17,7 @@ function CustomerTable({ customers, selectedIds, isLoading, onSelectCustomer }) 
           <thead className="bg-gray-900 bg-opacity-50">
             <tr>
               <th scope="col" className="p-4 w-16">
-                <span className="sr-only">Select</span>
+                <span className="sr-only">Seç</span>
               </th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">CARİ HESAP KODU</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">CARİ HESAP ÜNVANI</th>
@@ -34,7 +34,7 @@ function CustomerTable({ customers, selectedIds, isLoading, onSelectCustomer }) 
             ) : customers.length === 0 ? (
               <tr>
                 <td colSpan="8" className="text-center py-10 text-gray-400">
-                  No customers found.
+                  Kayıtlı müşteri bulunamadı.
                 </td>
               </tr>
             ) : (
@@ -60,7 +60,7 @@ function CustomerTable({ customers, selectedIds, isLoading, onSelectCustomer }) 
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{customer.name}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">{customer.phone}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 text-right">
-                    {customer.balance.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' })}
+                    {(customer.balance ?? 0).toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' })} 
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
                     {customer.status && (

@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('user');
   };
 
   const value = { isAuthenticated, user, login, logout };

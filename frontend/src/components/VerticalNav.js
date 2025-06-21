@@ -12,7 +12,7 @@ function VerticalNav() {
 
   return (
     <aside className="w-64 bg-gray-900/40 backdrop-blur-xl h-screen p-4 flex flex-col sticky top-16 border-r border-gray-700/50">
-      <h2 className="text-white font-bold text-sm uppercase tracking-wider mb-4 px-2">Navigation</h2>
+      <h2 className="text-white font-bold text-sm uppercase tracking-wider mb-4 px-2">Navİgasyon</h2>
       <nav>
         <ul>
           <li>
@@ -23,7 +23,7 @@ function VerticalNav() {
               }
             >
               <DashboardIcon />
-              Dashboard
+              Kontrol Paneli
             </NavLink>
           </li>
         </ul>

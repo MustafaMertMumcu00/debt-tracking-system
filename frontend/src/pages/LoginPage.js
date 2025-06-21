@@ -9,8 +9,8 @@ import InteractiveBackground from '../components/InteractiveBackground';
 const LoginVisual = () => (
   <div className="hidden lg:flex w-3/5 items-center justify-center p-12 flex-col text-center">
     <svg className="w-48 h-48 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-    <h1 className="text-3xl font-bold text-white mt-6">Debt Confirmation, Simplified.</h1>
-    <p className="text-gray-400 mt-2">Securely manage and confirm your financial statements.</p>
+    <h1 className="text-3xl font-bold text-white mt-6">Borç Mutabakatı, Basitleştirildi.</h1>
+    <p className="text-gray-400 mt-2">Finansal dökümlerinizi güvenle yönetin ve onaylayın.</p>
   </div>
 );
 
@@ -35,7 +35,7 @@ function LoginPage() {
     setError('');
     
     if (!email || !password) {
-      setError('Please fill in all fields.');
+      setError('Lütfen tüm alanları doldurun.');
       setLoading(false);
       return;
     }
@@ -45,19 +45,19 @@ function LoginPage() {
       if (response.success) {
         // API'den gelen kullanıcı bilgisiyle context'i güncelle
         login(response.user); 
-        toast.success('Login Successful! Redirecting...', {
+        toast.success('Giriş Başarılı! Yönlendiriliyorsunuz...', {
           icon: <FaCheckCircle className="text-blue-500" />
         });
         setTimeout(() => {
           navigate('/dashboard');
         }, 1500);
       } else {
-        setError(response.message || 'Invalid credentials. Please try again.');
-        toast.error(response.message || 'Invalid credentials.');
+        setError(response.message || 'Geçersiz giriş bilgileri. Lütfen tekrar deneyin.');
+        toast.error(response.message || 'Geçersiz giriş bilgileri.');
         setLoading(false);
       }
     } catch (err) {
-      const errorMessage =  err.message || 'An unexpected error occurred. Please check your connection.';
+      const errorMessage =  err.message || 'Beklenmedik bir hata oluştu. Lütfen bağlantınızı kontrol edin.';
       setError(errorMessage);
       toast.error(errorMessage);
       setLoading(false);
@@ -72,8 +72,8 @@ function LoginPage() {
       <div className="w-full lg:w-2/5 flex items-center justify-center p-8 bg-gray-900/40 backdrop-blur-xl border-l border-gray-700/50">
         <div className="w-full max-w-md">
           <div className="text-left mb-10">
-            <h2 className="text-4xl font-bold text-white">Login</h2>
-            <p className="text-gray-400 mt-2">Welcome back! Please enter your details.</p>
+            <h2 className="text-4xl font-bold text-white">Giriş Yap</h2>
+            <p className="text-gray-400 mt-2">Tekrar hoş geldiniz! Lütfen bilgilerinizi girin.</p>
           </div>
           
           {error && (
@@ -84,16 +84,16 @@ function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-6" noValidate>
             <div>
-              <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="email">Email Address</label>
+              <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="email">E-posta Adresi</label>
               <input
                 id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="you@example.com" required
+                placeholder="örnek@mail.com" required
               />
             </div>
             
             <div className="relative">
-              <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="password">Password</label>
+              <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="password">Şifre</label>
               <input
                 id="password" type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -113,16 +113,16 @@ function LoginPage() {
                 type="submit" disabled={loading}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:bg-gray-500 transition-colors"
               >
-                {loading ? 'Logging in...' : 'Login'}
+                {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
               </button>
             </div>
           </form>
 
           <div className="text-center mt-6">
             <p className="text-gray-400 text-sm">
-              Don't have an account?{' '}
+              Hesabınız yok mu?{' '}
               <Link to="/register" className="font-semibold text-blue-400 hover:text-blue-300">
-                Register here
+                Buradan kaydolun
               </Link>
             </p>
           </div>

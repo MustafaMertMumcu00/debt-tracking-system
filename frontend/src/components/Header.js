@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { toast } from 'react-toastify';
 import { Menu, Transition, MenuButton, MenuItems, MenuItem } from '@headlessui/react';
-import { FaUserCircle, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserCircle, FaSignOutAlt, FaCheckCircle } from 'react-icons/fa';
 
 const Logo = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,6 +18,9 @@ function Header() {
 
   const handleLogout = () => {
     logout();
+    toast.success('Başarıyla çıkış yapıldı.', {
+      icon: <FaCheckCircle className="text-blue-500" />
+    });
     navigate('/login');
   };
 
@@ -40,9 +44,9 @@ function Header() {
               <Menu as="div" className="relative ml-3">
                 <div>
                   <MenuButton className="flex items-center gap-2 rounded-full bg-gray-800 p-1 text-sm text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 transition-colors">
-                    <span className="sr-only">Open user menu</span>
+                    <span className="sr-only">Kullanıcı menüsünü aç</span>
                     <FaUserCircle className="h-8 w-8" />
-                    <span className="hidden sm:inline pr-2">{user?.name || 'My Account'}</span>
+                    <span className="hidden sm:inline pr-2">{user?.name || 'Hesabım'}</span>
                   </MenuButton>
                 </div>
                 <Transition
@@ -56,29 +60,23 @@ function Header() {
                 >
                   <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-800 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-gray-700">
                     <MenuItem>
-                      {({ active }) => (
-                        <a href="#" className={`${active ? 'bg-gray-700' : ''} block px-4 py-2 text-sm text-gray-200`}>
-                          Your Profile
-                        </a>
-                      )}
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-200 data-[active]:bg-gray-700">
+                        Profiliniz
+                      </a>
                     </MenuItem>
                     <MenuItem>
-                      {({ active }) => (
-                        <a href="#" className={`${active ? 'bg-gray-700' : ''} block px-4 py-2 text-sm text-gray-200`}>
-                          Settings
-                        </a>
-                      )}
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-200 data-[active]:bg-gray-700">
+                        Ayarlar
+                      </a>
                     </MenuItem>
                     <MenuItem>
-                      {({ active }) => (
-                        <button
-                          onClick={handleLogout}
-                          className={`${active ? 'bg-red-600/80' : ''} w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-red-400 font-semibold`}
-                        >
-                          <FaSignOutAlt />
-                          Logout
-                        </button>
-                      )}
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-red-400 font-semibold data-[active]:bg-red-600/80"
+                      >
+                        <FaSignOutAlt />
+                        Çıkış Yap
+                      </button>
                     </MenuItem>
                   </MenuItems>
                 </Transition>
@@ -87,10 +85,10 @@ function Header() {
               // Giriş yapılmadığında gösterilecek butonlar
               <div className="flex items-center space-x-2 sm:space-x-4">
                 <Link to="/login" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                  Login
+                  Giriş Yap
                 </Link>
                 <Link to="/register" className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-colors shadow-lg shadow-blue-500/20">
-                  Register
+                  Kayıt Ol
                 </Link>
               </div>
             )}

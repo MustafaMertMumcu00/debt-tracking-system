@@ -35,11 +35,16 @@ const apiRequest = async (endpoint, options = {}) => {
     if (!response.ok) {
       if (contentType && contentType.indexOf('application/json') !== -1) {
         const errorData = await response.json();
-        // Django'dan gelen hata mesajlarını birleştirelim
-        const errorMessage = Object.values(errorData).flat().join(' ');
-        throw new Error(errorMessage || 'An API error occurred');
+        // Eğer bizim özel {success, message} formatımızda bir hata mesajı varsa, direkt onu kullan.
+        if (errorData.message) {
+          throw new Error(errorData.message);
+        } else {
+          // Değilse, Django'nun standart validasyon hataları için eski yöntemi kullan.
+          const errorMessage = Object.values(errorData).flat().join(' ');
+          throw new Error(errorMessage || 'Bir API hatası oluştu');
+        }
       } else {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Sunucu hatası oluştu! Durum Kodu: ${response.status}`);
       }
     }
     
@@ -51,11 +56,15 @@ const apiRequest = async (endpoint, options = {}) => {
     return response.json();
 
   } catch (error) {
-    console.error('API Request Failed:', error);
+    console.error('API İsteği Başarısız:', error);
+    
+    if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      throw new Error('Sunucuya ulaşılamadı. Lütfen internet bağlantınızı kontrol edin veya sunucunun çalıştığından emin olun.');
+    }
+    // Diğer hatalar için (örn: backend'den gelen bizim fırlattığımız hatalar)
     throw error;
   }
 };
-
 
 // --- API EXPORTLARI ---
 

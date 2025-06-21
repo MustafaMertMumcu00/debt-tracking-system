@@ -63,7 +63,7 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS('Data import finished!'))
 
-# Eğer veritabanını sildiysen de -> python manage.py migrate eğer silmediysen bu satırı geç.
+# Eğer veritabanını sildiysen -> python manage.py migrate eğer silmediysen bu satırı geç.
 # JSON'ı güncelle.
 # Terminalde python manage.py import_data yaz
 # Bu sayede JSON'daki değişiklikler django veritabanına aktarılır.

@@ -24,24 +24,24 @@ function DashboardPage() {
   const [statusFilter, setStatusFilter] = useState('all');
 
   const sortKeyOptions = [
-    { value: 'name', label: 'Name' },
-    { value: 'balance', label: 'Balance' },
-    { value: 'status', label: 'Response Status' },
-    { value: 'lastPaymentDate', label: 'Last Payment' },
-    { value: 'lastInvoiceDate', label: 'Last Invoice' },
-    { value: 'accountCode', label: 'Account Code' },
+    { value: 'name', label: 'İsim' },
+    { value: 'balance', label: 'Bakiye' },
+    { value: 'status', label: 'Yanıt Durumu' },
+    { value: 'lastPaymentDate', label: 'Son Tahsilat' },
+    { value: 'lastInvoiceDate', label: 'Son Fatura' },
+    { value: 'accountCode', label: 'Hesap Kodu' },
   ];
 
   const sortDirectionOptions = [
-    { value: 'ascending', label: 'Ascending' },
-    { value: 'descending', label: 'Descending' },
+    { value: 'ascending', label: 'Artan' },
+    { value: 'descending', label: 'Azalan' },
   ];
 
   const statusFilterOptions = [
-    { value: 'all', label: 'All Statuses' },
-    { value: 'confirmed', label: 'Confirmed' },
-    { value: 'pending', label: 'Pending' },
-    { value: 'rejected', label: 'Rejected' },
+    { value: 'all', label: 'Tüm Durumlar' },
+    { value: 'confirmed', label: 'Onaylandı' },
+    { value: 'pending', label: 'Beklemede' },
+    { value: 'rejected', label: 'Reddedildi' },
   ];
 
   // API'dan veri çekme bloğu
@@ -57,9 +57,14 @@ function DashboardPage() {
       try {
         // API'a user.id gönder
         const data = await api.fetchCustomers();
-        setAllCustomers(data);
+        const sanitizedData = data.map(customer => ({
+          ...customer,
+          // parseFloat, ondalıklı sayıları doğru bir şekilde metinden sayıya çevirir
+          balance: parseFloat(customer.balance) 
+        }));
+        setAllCustomers(sanitizedData);
       } catch (err) {
-        const errorMessage = 'Failed to fetch customer data.';
+        const errorMessage = 'Müşteri verileri alınamadı.';
         setError(errorMessage);
         toast.error(errorMessage);
         console.error(err);
@@ -86,15 +91,19 @@ function DashboardPage() {
       items.sort((a, b) => {
         const aValue = a[sortConfig.key];
         const bValue = b[sortConfig.key];
-        if (!aValue) return 1;
-        if (!bValue) return -1;
+        
         if (typeof aValue === 'number' && typeof bValue === 'number') {
             return sortConfig.direction === 'ascending' ? aValue - bValue : bValue - aValue;
-        } else {
-            if (aValue < bValue) return sortConfig.direction === 'ascending' ? -1 : 1;
-            if (aValue > bValue) return sortConfig.direction === 'ascending' ? 1 : -1;
         }
-        return 0;
+
+        const strA = String(aValue || '');
+        const strB = String(bValue || '');
+
+        if (sortConfig.direction === 'ascending') {
+            return strA.localeCompare(strB, 'tr');
+        } else {
+            return strB.localeCompare(strA, 'tr');
+        }
       });
     }
     return items;
@@ -114,6 +123,10 @@ function DashboardPage() {
       setCurrentPage(1);
     }
   }, [currentPage, totalPages]);
+
+  useEffect(() => {
+    setSelectedCustomerIds([]); // Filtre değiştiğinde seçimleri sıfırla
+    }, [statusFilter, searchTerm, sortConfig]);
 
   const handleSelectCustomer = (customerId) => {
     setSelectedCustomerIds(prevIds =>
@@ -136,7 +149,7 @@ function DashboardPage() {
     if (selectedCustomerIds.length > 0) {
       setIsModalOpen(true);
     } else {
-      toast.warn("Please select at least one customer to send a message.");
+      toast.warn("Lütfen mesaj göndermek için en az bir müşteri seçin.");
     }
   };
   
@@ -153,13 +166,17 @@ function DashboardPage() {
 
       // İşlem başarılı olunca, tablodaki veriyi tazelemek için müşterileri yeniden çek.
       const updatedData = await api.fetchCustomers();
-      setAllCustomers(updatedData);
+      const sanitizedData = updatedData.map(customer => ({
+        ...customer,
+        balance: parseFloat(customer.balance) 
+      }));
+      setAllCustomers(sanitizedData);
 
       setIsModalOpen(false);
       setSelectedCustomerIds([]);
     } catch (err)      {
       // apiRequest'ten gelen hatayı direkt göster
-      toast.error(err.message || 'Failed to send requests.');
+      toast.error(err.message || 'Talepler gönderilemedi.');
     } finally {
       setIsSending(false);
     }
@@ -180,10 +197,10 @@ function DashboardPage() {
       <main className="py-8 px-4 sm:px-6 lg:px-8">
         <div className="space-y-8">
           <div>
-            <h1 className="text-3xl font-bold leading-tight text-white">Debt Confirmation Dashboard</h1>
+            <h1 className="text-3xl font-bold leading-tight text-white">Borç Mutabakat Paneli</h1>
             <p className="mt-2 text-md text-gray-400">
-              Welcome, <span className="font-bold text-white">{user?.name}</span>. 
-              Showing <span className="font-bold text-white">{paginatedCustomers.length}</span> of <span className="font-bold text-white">{processedCustomers.length}</span> customers.
+              Hoş geldiniz, <span className="font-bold text-white">{user?.name}</span>. 
+              Toplam <span className="font-bold text-white">{processedCustomers.length}</span> müşteriden <span className="font-bold text-white">{paginatedCustomers.length}</span> tanesi gösteriliyor.
             </p>
           </div>
           
@@ -195,7 +212,7 @@ function DashboardPage() {
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><FaSearch /></span>
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Ara..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full sm:w-52 pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -203,7 +220,7 @@ function DashboardPage() {
               </div>
 
               <div className="flex items-center gap-2">
-                <label className="text-sm font-medium text-gray-400">Filter:</label>
+                <label className="text-sm font-medium text-gray-400">Filtrele:</label>
                 <CustomSelect
                   options={statusFilterOptions}
                   value={statusFilter}
@@ -212,7 +229,7 @@ function DashboardPage() {
               </div>
 
               <div className="flex items-center gap-2">
-                <label className="text-sm font-medium text-gray-400">Sort:</label>
+                <label className="text-sm font-medium text-gray-400">Sırala:</label>
                 <CustomSelect
                   options={sortKeyOptions}
                   value={sortConfig.key}
@@ -231,14 +248,14 @@ function DashboardPage() {
                 onClick={handleSelectAllFiltered}
                 className="px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-500 transition-colors"
               >
-                {processedCustomers.length > 0 && selectedCustomerIds.length === processedCustomers.length ? 'Unselect All' : 'Select All'}
+                {processedCustomers.length > 0 && selectedCustomerIds.length === processedCustomers.length ? 'Tüm Seçimi Kaldır' : 'Tümünü Seç'}
               </button>
               <button
                 onClick={handleOpenSendModal}
                 disabled={selectedCustomerIds.length === 0 || isSending}
                 className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors flex-shrink-0"
               >
-                {`Send (${selectedCustomerIds.length})`}
+                {`Gönder (${selectedCustomerIds.length})`}
               </button>
             </div>
           </div>
